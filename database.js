@@ -1,10 +1,14 @@
+// 실제 DB 활용 시 교체 대상
 const csvToJson = require("convert-csv-to-json");
 
 const database = {
   todos: [],
 };
 Object.keys(database).forEach((key) => {
-  database[key] = [...database[key], ...csvToJson.fieldDelimiter(",").getJsonFromCsv(`./data/${key}.csv`)];
+  database[key] = [
+    ...database[key],
+    ...csvToJson.fieldDelimiter(",").getJsonFromCsv(`./data/${key}.csv`),
+  ];
   if (database[key].length > 0) {
     const firstItem = database[key][0];
     Object.keys(firstItem).forEach((itemKey) => {
